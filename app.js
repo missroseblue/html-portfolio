@@ -2,55 +2,131 @@
 const inquirer = require("inquirer");
 // const userInput = require("prompt-sync");
 
-inquirer.prompt([
+const questions = () => {
+  return inquirer.prompt([
   {
     type: "input",
-    name: "userName",
-    message: "What is your GitHub user name?"
+    name: "username",
+    message: "What is your GitHub user name?",
+    validate: usernameInput => {
+      if (usernameInput) {
+        return true;
+      } else {
+        console.log('Please enter your GitHub user name!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "email",
-    message: "What is your email address?"
+    message: "What is your email address?",
+    validate: emailInput => {
+      if (emailInput) {
+        return true;
+      } else {
+        console.log('Please enter your email address!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "title",
-    message: "What is the title of your project?"
+    message: "What is the title of your project?",
+    validate: titleInput => {
+      if (titleInput) {
+        return true;
+      } else {
+        console.log('Please enter the name of your project!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "description",
-    message: "Please write a short descrption of your project."
+    message: "Please write a short description of your project.",
+    validate: descriptionInput => {
+      if (descriptionInput) {
+        return true;
+      } else {
+        console.log('Please enter a description of your project!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "license",
-    message: "What license should you project have?"
+    message: "What license should you project have?",
+    validate: licenseInput => {
+      if (licenseInput) {
+        return true;
+      } else {
+        console.log('Please enter what kind of license your should have!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "installation",
-    message: "What command should be run to install dependencies?"
+    message: "What command should be run to install dependencies?",
+    validate: installationInput => {
+      if (installationInput) {
+        return true;
+      } else {
+        console.log('Please enter what command should be run to intall dependencies!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "tests",
-    message: "What command should be run to run tests?"
+    message: "What command should be run to run tests?",
+    validate: testsInput => {
+      if (testsInput) {
+        return true;
+      } else {
+        console.log('Please enter what command should be run to run tests!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "usage",
-    message: "What does the user need to know about using the repository?"
+    message: "What does the user need to know about using the repository?",
+    validate: usageInput => {
+      if (usageInput) {
+        return true;
+      } else {
+        console.log('Please enter what users need to know about using the repositoty!')
+        return false
+      }
+      }
   },
   {
     type: "input",
     name: "contributing",
-    message:
-      "What does the user need to know about contributing to the repository?"
+    message: "What does the user need to know about contributing to the repository?",
+      validate: contributingInput => {
+        if (contributingInput) {
+          return true;
+        } else {
+          console.log('Please enter what the user should know about contributing to the repository!')
+          return false
+        }
+        }
   },
 ])
-.then(answers => console.log(answers));
+};
+questions()
+.then(answers => console.log(answers))
+.then(projectAnswers => console.log(projectAnswers));
+
 // .then (function(userInput) {
 //   const 
 // })
@@ -89,6 +165,7 @@ inquirer.prompt([
 //   ${tests}
 
 //   ## Questions
+//  If you have additional questions about my project, you can reach me at:
 //   GitHub Username: ${userName}
 //   Email: ${email}
 
