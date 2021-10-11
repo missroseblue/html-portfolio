@@ -1,8 +1,8 @@
-// const fs = require("fs");
+const fs = require("fs");
+const generateReadMe = require("./src/readme-template.js");
 const inquirer = require("inquirer");
-// const userInput = require("prompt-sync");
 
-const questions = () => {
+const promptUser = () => {
   return inquirer.prompt([
   {
     type: "input",
@@ -57,17 +57,15 @@ const questions = () => {
       }
   },
   {
-    type: "input",
+    type: "list",
     name: "license",
     message: "What license should you project have?",
-    validate: licenseInput => {
-      if (licenseInput) {
-        return true;
-      } else {
-        console.log('Please enter what kind of license your should have!')
-        return false
-      }
-      }
+    choices: [
+      "Apache License 2.0",
+      "GNU GPLv3",
+      "MIT License",
+      "None"
+    ]
   },
   {
     type: "input",
@@ -123,69 +121,16 @@ const questions = () => {
   },
 ])
 };
-questions()
-.then(answers => console.log(answers))
-.then(projectAnswers => console.log(projectAnswers));
+promptUser()
+.then ((data) => {
+  const pageReadMe = generateReadMe(data);
 
-// .then (function(userInput) {
-//   const 
-// })
+  fs.writeFile('./dist/README.MD', pageReadMe, (err) => {
+  if (err) throw new Error(err);
 
-// const generateReadMe = (userInput) => {
-//   return `
-//   # ${title}
-
-//   ## Description
-//   ${description}
-
-//   ## Table of Contents
-//   [Title](#title)
-//   [Description](#description)
-//   [Installation](#installation)
-//   [Usage](#usage)
-//   [License](#license)
-//   [Contributing](#contributing)
-//   [Tests](#tests)
-//   [Questions](#questions)
+  console.log(
+    "README file is complete! Check out README.MD to see the output!");
+  });
+});
 
 
-//   ## Installation
-//   ${installation}
-
-//   ## Usage
-//   ${usage}
-
-//   ## License
-//   ${license}
-
-//   ## Contributing
-//   ${contributing}
-
-//   ## Tests
-//   ${tests}
-
-//   ## Questions
-//  If you have additional questions about my project, you can reach me at:
-//   GitHub Username: ${userName}
-//   Email: ${email}
-
-//   `;
-// };
-
-// fs.writeFile("README.MD", generateReadMe(), (err) => {
-//   if (err) throw new Error(err);
-
-//   console.log(
-//     "README file is complete! Check out README.MD to see the output!"
-//   );
-// });
-
-// let userName = prompt("What is your GitHub user name?");
-// let email = propmt("What is your email address?");
-// let title = prompt("What is the title of your project?");
-// let description = prompt("Please write a short descrption of your project.");
-// let license = prompt("What license should you project have?");
-// let installation = prompt("What command should be run to install dependencies?");
-// let tests = prompt("What command should be run to run tests?");
-// let usage = prompt("What does the user need to know about using the repository?");
-// let contributing = prompt("What does the user need to know about contributing to the repository?");
