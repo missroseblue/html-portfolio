@@ -1,4 +1,4 @@
-# README Generator
+# README File Generator
 
 ## Description
 By answering a few questions, the README Generator will create a formatted README.MD file that you can use for your projects.
