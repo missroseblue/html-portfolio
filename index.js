@@ -109,7 +109,7 @@ const promptUser = () => {
   {
     type: "input",
     name: "contributing",
-    message: "What does the user need to know about contributing to the repository?",
+    message: "How can others contribute to the repository?",
       validate: contributingInput => {
         if (contributingInput) {
           return true;
