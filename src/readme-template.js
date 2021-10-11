@@ -6,7 +6,7 @@ function renderLicenseBadge(license) {
   } else if (license === "MIT License") {
     return `![MIT License](https://img.shields.io/badge/license-MIT-blue)`;
   } else if (license === "GNU GPLv3") {
-    return `[GNU GPLv3](https://img.shields.io/badge/license-GNU%20GPLv3-red)`;
+    return `![GNU GPLv3](https://img.shields.io/badge/license-GNU%20GPLv3-red)`;
   } else {
     return ''
   }
